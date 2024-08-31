@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="Novo Projeto de Jogo"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Multiplayer="*res://multiplayer/multiplayer.gd"
+Globals="*res://multiplayer/misc/globals.gd"
 
 [rendering]
 
