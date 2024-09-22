@@ -1,0 +1,92 @@
+[gd_scene load_steps=3 format=3 uid="uid://dapvlaujlukjy"]
+
+[ext_resource type="Script" path="res://scenes/ui/create_account/create_account_ui.gd" id="1_7g11b"]
+[ext_resource type="Script" path="res://scenes/ui/top_bar.gd" id="2_u4kuf"]
+
+[node name="CreateAccountUI" type="PanelContainer" node_paths=PackedStringArray("email_line", "password_line", "re_password_line", "access_button")]
+custom_minimum_size = Vector2(250, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7g11b")
+email_line = NodePath("LayoutVBox/ContentMargin/ContentVBox/EmailLine")
+password_line = NodePath("LayoutVBox/ContentMargin/ContentVBox/PasswordLine")
+re_password_line = NodePath("LayoutVBox/ContentMargin/ContentVBox/RePasswordLine")
+access_button = NodePath("LayoutVBox/ContentMargin/ContentVBox/AccessButton")
+
+[node name="LayoutVBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TopBar" type="Panel" parent="LayoutVBox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+script = ExtResource("2_u4kuf")
+target_node = NodePath("../..")
+
+[node name="TopBarContentMargin" type="MarginContainer" parent="LayoutVBox/TopBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="TopBarContentHBox" type="HBoxContainer" parent="LayoutVBox/TopBar/TopBarContentMargin"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="LayoutVBox/TopBar/TopBarContentMargin/TopBarContentHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cadastrar"
+
+[node name="CloseButton" type="Button" parent="LayoutVBox/TopBar/TopBarContentMargin/TopBarContentHBox"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "X"
+
+[node name="ContentMargin" type="MarginContainer" parent="LayoutVBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ContentVBox" type="VBoxContainer" parent="LayoutVBox/ContentMargin"]
+layout_mode = 2
+
+[node name="EmailLine" type="LineEdit" parent="LayoutVBox/ContentMargin/ContentVBox"]
+layout_mode = 2
+placeholder_text = "Email"
+
+[node name="PasswordLine" type="LineEdit" parent="LayoutVBox/ContentMargin/ContentVBox"]
+layout_mode = 2
+placeholder_text = "Senha"
+secret = true
+
+[node name="RePasswordLine" type="LineEdit" parent="LayoutVBox/ContentMargin/ContentVBox"]
+layout_mode = 2
+placeholder_text = "Repetir "
+secret = true
+
+[node name="AccessButton" type="Button" parent="LayoutVBox/ContentMargin/ContentVBox"]
+layout_mode = 2
+disabled = true
+text = "Acessar"
+
+[connection signal="pressed" from="LayoutVBox/TopBar/TopBarContentMargin/TopBarContentHBox/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="text_changed" from="LayoutVBox/ContentMargin/ContentVBox/EmailLine" to="." method="_on_email_line_text_changed"]
+[connection signal="text_changed" from="LayoutVBox/ContentMargin/ContentVBox/PasswordLine" to="." method="_on_password_line_text_changed"]
+[connection signal="text_changed" from="LayoutVBox/ContentMargin/ContentVBox/RePasswordLine" to="." method="_on_re_password_line_text_changed"]
+[connection signal="pressed" from="LayoutVBox/ContentMargin/ContentVBox/AccessButton" to="." method="_on_access_button_pressed"]
