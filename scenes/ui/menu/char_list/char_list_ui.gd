@@ -64,5 +64,4 @@ func _on_delete_button_pressed(_panel: Panel, index: int,) -> void:
 
 
 func _on_close_button_pressed() -> void:
-	Multiplayer.websocket.disconnect_from_host()
 	get_tree().quit()
