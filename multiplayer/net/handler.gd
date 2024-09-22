@@ -62,4 +62,4 @@ func handle_message(message: ServerMessage, scene_tree: SceneTree) -> void:
 		if handler.is_valid():
 			handler.call(message, scene_tree)
 		else:
-			alert.show_alert(scene_tree, AlertUI.AlertType.ERROR, 'Erro ao processar a mensagem...')
+			alert.show_alert(scene_tree, 'Erro ao processar a mensagem...')
