@@ -1,36 +1,3 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwrl5q0w1iv0s"]
+[gd_scene format=3 uid="uid://37ljdjh8mlav"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_gkpye"]
-
-[node name="Main" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_gkpye")
-
-[node name="Shared" type="CanvasLayer" parent="."]
-
-[node name="AlertLocation" type="MarginContainer" parent="Shared"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -800.0
-offset_top = -100.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="AlertsVBox" type="VBoxContainer" parent="Shared/AlertLocation"]
-layout_direction = 3
-layout_mode = 2
-alignment = 2
-
-[node name="Menu" type="CanvasLayer" parent="."]
-
-[node name="Game" type="CanvasLayer" parent="."]
+[node name="Main" type="Node2D"]
