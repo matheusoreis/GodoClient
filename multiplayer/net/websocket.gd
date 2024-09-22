@@ -7,7 +7,6 @@ signal closed
 signal received(packet_buf: PackedByteArray)
 
 var _socket: WebSocketPeer
-var _handler: Handler
 
 var _is_connecting: bool = false
 var _is_open: bool = false
@@ -17,7 +16,6 @@ var _is_closed: bool = true
 
 func _init():
 	_socket = WebSocketPeer.new()
-	_handler = Handler.new()
 
 
 func connect_to_host(host: String, port: int, use_ssl := false) -> void:
