@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dapvlaujlukjy"]
+[gd_scene load_steps=3 format=3 uid="uid://dvkpksmeiyjyi"]
 
-[ext_resource type="Script" path="res://scenes/ui/create_account/create_account_ui.gd" id="1_7g11b"]
+[ext_resource type="Script" path="res://scenes/ui/menu/create_account/create_account_ui.gd" id="1_y0eyu"]
 [ext_resource type="Script" path="res://scenes/ui/top_bar.gd" id="2_u4kuf"]
 
 [node name="CreateAccountUI" type="PanelContainer" node_paths=PackedStringArray("email_line", "password_line", "re_password_line", "access_button")]
@@ -16,7 +16,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7g11b")
+script = ExtResource("1_y0eyu")
 email_line = NodePath("LayoutVBox/ContentMargin/ContentVBox/EmailLine")
 password_line = NodePath("LayoutVBox/ContentMargin/ContentVBox/PasswordLine")
 re_password_line = NodePath("LayoutVBox/ContentMargin/ContentVBox/RePasswordLine")

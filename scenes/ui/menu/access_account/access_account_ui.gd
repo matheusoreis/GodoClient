@@ -16,9 +16,8 @@ func _on_close_button_pressed() -> void:
 
 
 func _on_access_button_pressed() -> void:
-	pass
-	#var outgoing = AccessAccount.new(email_line.text, password_line.text)
-	#outgoing.send()
+	var outgoing = AccessAccount.new(email_line.text, password_line.text)
+	outgoing.send()
 
 
 func _on_email_line_text_changed(new_text: String) -> void:
