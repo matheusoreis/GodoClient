@@ -16,6 +16,8 @@ grow_vertical = 2
 script = ExtResource("1_yb6d6")
 _fps_label = NodePath("Shared/InfoLocation/ContentVBox/FpsLabel")
 
+[node name="Game" type="Node" parent="."]
+
 [node name="Shared" type="CanvasLayer" parent="."]
 
 [node name="InfoLocation" type="MarginContainer" parent="Shared"]
@@ -53,6 +55,7 @@ char_list_ui = NodePath("../CharListUI")
 create_account_ui = NodePath("../CreateAccountUI")
 
 [node name="CreateAccountUI" parent="Menu" node_paths=PackedStringArray("access_account_ui") instance=ExtResource("3_vg40n")]
+visible = false
 access_account_ui = NodePath("../AccessAccountUI")
 
 [node name="CharListUI" parent="Menu" node_paths=PackedStringArray("access_account_ui") instance=ExtResource("4_qlj5w")]
@@ -66,3 +69,5 @@ access_account_ui = NodePath("../AccessAccountUI")
 [node name="CreateCharUI" parent="Menu" node_paths=PackedStringArray("char_list_ui") instance=ExtResource("5_aeujk")]
 visible = false
 char_list_ui = NodePath("../CharListUI")
+
+[node name="InGame" type="CanvasLayer" parent="."]

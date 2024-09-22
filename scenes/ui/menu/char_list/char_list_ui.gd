@@ -14,26 +14,26 @@ func update_character_panels(characters: Array, max_characters: int) -> void:
 		child.queue_free()
 
 	for i in range(max_characters):
-		var panel_instance: Panel = slot_panel_res.instantiate() as Panel
-		slots_hbox.add_child(panel_instance)
+		var panel_instantiate: Panel = slot_panel_res.instantiate() as Panel
+		slots_hbox.add_child(panel_instantiate)
 
-		var character_content: VBoxContainer = panel_instance.get_node('ContentMargin/ContentVBox')
-		var new_button: Button = panel_instance.get_node('ContentMargin/NewButton')
+		var character_content: VBoxContainer = panel_instantiate.get_node('ContentMargin/ContentVBox')
+		var new_button: Button = panel_instantiate.get_node('ContentMargin/NewButton')
 
 		if i < characters.size():
 			var character_data = characters[i]
 
-			var name_label: Label = panel_instance.get_node('ContentMargin/ContentVBox/NameLabel')
+			var name_label: Label = panel_instantiate.get_node('ContentMargin/ContentVBox/NameLabel')
 			if name_label:
 				name_label.text = character_data["name"]
 
-			var play_button: Button = panel_instance.get_node('ContentMargin/ContentVBox/PlayButton')
+			var play_button: Button = panel_instantiate.get_node('ContentMargin/ContentVBox/PlayButton')
 			if play_button:
-				play_button.pressed.connect(_on_play_button_pressed.bind(panel_instance, character_data["id"], character_data["map"]))
+				play_button.pressed.connect(_on_play_button_pressed.bind(panel_instantiate, character_data["id"], character_data["map"]))
 
-			var delete_button: Button = panel_instance.get_node('ContentMargin/ContentVBox/DeleteButton')
+			var delete_button: Button = panel_instantiate.get_node('ContentMargin/ContentVBox/DeleteButton')
 			if delete_button:
-				delete_button.pressed.connect(_on_delete_button_pressed.bind(panel_instance, character_data["id"]))
+				delete_button.pressed.connect(_on_delete_button_pressed.bind(panel_instantiate, character_data["id"]))
 
 			character_content.show()
 			new_button.hide()
@@ -42,13 +42,13 @@ func update_character_panels(characters: Array, max_characters: int) -> void:
 			new_button.show()
 
 			if new_button:
-				new_button.pressed.connect(_on_new_button_pressed.bind(panel_instance, i))
+				new_button.pressed.connect(_on_new_button_pressed.bind(panel_instantiate, i))
 
 
 
 func _on_new_button_pressed(_panel: Panel, _index: int) -> void:
 	hide()
-	var create_char_tree := '/root/Main/Menu/NewCharacterUI'
+	var create_char_tree := '/root/Main/Menu/CreateCharUI'
 	var create_char_ui = get_tree().root.get_node(create_char_tree) as PanelContainer
 	create_char_ui.show()
 
