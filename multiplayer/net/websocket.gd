@@ -7,7 +7,6 @@ signal closed
 signal received(packet_buf: PackedByteArray)
 
 var _socket: WebSocketPeer
-var _alert: AlertUI
 var _handler: Handler
 
 var _is_connecting: bool = false
@@ -18,7 +17,6 @@ var _is_closed: bool = true
 
 func _init():
 	_socket = WebSocketPeer.new()
-	_alert = AlertUI.new()
 	_handler = Handler.new()
 
 
