@@ -2,20 +2,20 @@ class_name CharacterUi extends PanelContainer
 
 
 @export_category('Referências')
-@export var signin_ui: PanelContainer
-@export var character_container: HBoxContainer
+@export var access_account_ui: PanelContainer
+@export var slots_hbox: HBoxContainer
 
 
 func update_character_panels(characters: Array, max_characters: int) -> void:
 	var slot_panel_res := preload("res://scenes/ui/menu/char_list/slot_panel.tscn") as PackedScene
 
-	for child in character_container.get_children():
-		character_container.remove_child(child)
+	for child in slots_hbox.get_children():
+		slots_hbox.remove_child(child)
 		child.queue_free()
 
 	for i in range(max_characters):
 		var panel_instance: Panel = slot_panel_res.instantiate() as Panel
-		character_container.add_child(panel_instance)
+		slots_hbox.add_child(panel_instance)
 
 		var character_content: VBoxContainer = panel_instance.get_node('ContentMargin/ContentVBox')
 		var new_button: Button = panel_instance.get_node('ContentMargin/NewButton')

@@ -7,12 +7,12 @@ extends PanelContainer
 @export var access_button: Button
 
 @export_category('Referências')
-@export var signin_ui: PanelContainer
+@export var access_account_ui: PanelContainer
 
 
 func _on_close_button_pressed() -> void:
 	hide()
-	signin_ui.show()
+	access_account_ui.show()
 
 
 func _on_email_line_text_changed(new_text: String) -> void:

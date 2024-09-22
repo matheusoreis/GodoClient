@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/ui/shared/alert/alert_ui.gd" id="1_7lna1"]
 
 [node name="AlertUi" type="PanelContainer" node_paths=PackedStringArray("timer", "message")]
-offset_right = 1151.0
+offset_right = 1059.0
 offset_bottom = 60.0
 size_flags_horizontal = 3
 script = ExtResource("1_7lna1")

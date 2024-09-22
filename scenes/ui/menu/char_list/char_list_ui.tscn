@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/ui/menu/char_list/char_list_ui.gd" id="1_yqe7k"]
 [ext_resource type="Script" path="res://scenes/ui/top_bar.gd" id="2_7hg5i"]
 
-[node name="ListCharacterUI" type="PanelContainer"]
+[node name="CharListUI" type="PanelContainer" node_paths=PackedStringArray("slots_hbox")]
 custom_minimum_size = Vector2(400, 170)
 anchors_preset = 8
 anchor_left = 0.5
@@ -17,6 +17,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yqe7k")
+slots_hbox = NodePath("LayoutVBox/ContentMargin/ContentVBox")
 
 [node name="LayoutVBox" type="VBoxContainer" parent="."]
 layout_mode = 2

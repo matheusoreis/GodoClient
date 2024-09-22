@@ -1,3 +1,68 @@
-[gd_scene format=3 uid="uid://37ljdjh8mlav"]
+[gd_scene load_steps=6 format=3 uid="uid://37ljdjh8mlav"]
 
-[node name="Main" type="Node2D"]
+[ext_resource type="Script" path="res://main.gd" id="1_yb6d6"]
+[ext_resource type="PackedScene" uid="uid://46156qldxcyf" path="res://scenes/ui/menu/access_account/access_account_ui.tscn" id="2_842pl"]
+[ext_resource type="PackedScene" uid="uid://dvkpksmeiyjyi" path="res://scenes/ui/menu/create_account/create_account_ui.tscn" id="3_vg40n"]
+[ext_resource type="PackedScene" uid="uid://cg10364e05v16" path="res://scenes/ui/menu/char_list/char_list_ui.tscn" id="4_qlj5w"]
+[ext_resource type="PackedScene" uid="uid://cb2fjmbvllsok" path="res://scenes/ui/menu/create_char/create_char_ui.tscn" id="5_aeujk"]
+
+[node name="Main" type="Control" node_paths=PackedStringArray("_fps_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yb6d6")
+_fps_label = NodePath("Shared/InfoLocation/ContentVBox/FpsLabel")
+
+[node name="Shared" type="CanvasLayer" parent="."]
+
+[node name="InfoLocation" type="MarginContainer" parent="Shared"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+
+[node name="ContentVBox" type="VBoxContainer" parent="Shared/InfoLocation"]
+layout_mode = 2
+
+[node name="PingLabel" type="Label" parent="Shared/InfoLocation/ContentVBox"]
+layout_mode = 2
+text = "Ping: Sincronizando...."
+
+[node name="FpsLabel" type="Label" parent="Shared/InfoLocation/ContentVBox"]
+layout_mode = 2
+text = "Fps:"
+
+[node name="AlertLocation" type="MarginContainer" parent="Shared"]
+offset_right = 1152.0
+offset_bottom = 648.0
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+
+[node name="AlertsVBox" type="VBoxContainer" parent="Shared/AlertLocation"]
+layout_mode = 2
+
+[node name="Menu" type="CanvasLayer" parent="."]
+
+[node name="AccessAccountUI" parent="Menu" node_paths=PackedStringArray("char_list_ui", "create_account_ui") instance=ExtResource("2_842pl")]
+char_list_ui = NodePath("../CharListUI")
+create_account_ui = NodePath("../CreateAccountUI")
+
+[node name="CreateAccountUI" parent="Menu" node_paths=PackedStringArray("access_account_ui") instance=ExtResource("3_vg40n")]
+access_account_ui = NodePath("../AccessAccountUI")
+
+[node name="CharListUI" parent="Menu" node_paths=PackedStringArray("access_account_ui") instance=ExtResource("4_qlj5w")]
+visible = false
+offset_left = -200.0
+offset_top = -85.0
+offset_right = 200.0
+offset_bottom = 85.0
+access_account_ui = NodePath("../AccessAccountUI")
+
+[node name="CreateCharUI" parent="Menu" node_paths=PackedStringArray("char_list_ui") instance=ExtResource("5_aeujk")]
+visible = false
+char_list_ui = NodePath("../CharListUI")

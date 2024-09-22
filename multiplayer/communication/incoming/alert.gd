@@ -9,11 +9,12 @@ func handle(message : ServerMessage, scene_tree: SceneTree) -> void:
 	if should_disconnect == 1:
 		Multiplayer.websocket.disconnect_from_host()
 
-	var alert_scene := preload("res://scenes/ui/alert/alert_ui.tscn") as PackedScene
+	var alert_scene := preload("res://scenes/ui/shared/alert/alert_ui.tscn") as PackedScene
 	var alert_panel := alert_scene.instantiate() as AlertUI
-	var alert_panel_location := '/root/Main/Shared/AlertLocation/AlertsVBox'
-	var alert_vbox := scene_tree.root.get_node(alert_panel_location) as VBoxContainer
-
-	alert_panel.type = alert_type
-	alert_panel.message.text = alert_message
-	alert_vbox.add_child(alert_panel)
+	alert_panel.show_alert(scene_tree, alert_message)
+	#var alert_panel_location := '/root/Main/Shared/AlertLocation/AlertsVBox'
+	#var alert_vbox := scene_tree.root.get_node(alert_panel_location) as VBoxContainer
+#
+	#alert_panel.type = alert_type
+	#alert_panel.message.text = alert_message
+	#alert_vbox.add_child(alert_panel)

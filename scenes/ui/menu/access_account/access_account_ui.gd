@@ -6,7 +6,7 @@ extends PanelContainer
 @export var access_button: Button
 
 @export_category('Referências')
-@export var character_list_ui: PanelContainer
+@export var char_list_ui: PanelContainer
 @export var create_account_ui: PanelContainer
 
 

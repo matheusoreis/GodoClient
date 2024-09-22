@@ -20,7 +20,7 @@ func show_alert(scene_tree: SceneTree, p_message: String) -> void:
 	var alert_res := preload("res://scenes/ui/shared/alert/alert_ui.tscn") as PackedScene
 	var alert_instantiate := alert_res.instantiate() as AlertUI
 	
-	var alert_panel_tree := '/root/Main/Shared'
+	var alert_panel_tree := '/root/Main/Shared/AlertLocation/AlertsVBox'
 
 	alert_instantiate.message.text = p_message
 	scene_tree.root.get_node(alert_panel_tree).add_child(alert_instantiate)
