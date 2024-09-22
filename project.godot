@@ -14,6 +14,11 @@ config/name="GodoClient"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Globals="*res://multiplayer/misc/globals.gd"
+Multiplayer="*res://multiplayer/net/websocket.gd"
+
 [rendering]
 
 renderer/rendering_method="mobile"
