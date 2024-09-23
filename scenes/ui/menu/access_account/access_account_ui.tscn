@@ -80,7 +80,6 @@ text = "Acessar"
 
 [node name="CreateButton" type="Button" parent="LayoutVBox/ContentMargin/ContentVBox"]
 layout_mode = 2
-disabled = true
 text = "Cadastrar"
 
 [connection signal="pressed" from="LayoutVBox/TopBar/TopBarMarginContainer/TopBarContentHBox/CloseButton" to="." method="_on_close_button_pressed"]

@@ -11,13 +11,16 @@ extends CharacterBody2D
 
 @export_category('Variables')
 @export var _move_speed: float = 96
+@export var _friction: float = 96
+@export var _accelerate: float = 96
+
 @export var _raycast_vertical =  8
 @export var _raycast_horizontal = 12
 
 var player_id: int
 var player_name: String
+var gender: String
 var is_local_player: bool = true
-
 
 enum Direction {
 	LEFT,
@@ -31,8 +34,7 @@ var direction_to_server: Direction
 var previous_position: Vector2 = Vector2.ZERO
 
 var time_since_last_send: float = 0.0
-var send_delay: float = 0.1
-
+var send_delay: float = 0.02
 
 signal char_clicked(char: BaseCharacter)
 
@@ -45,31 +47,45 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_local_player:
-		_move()
-		
+		_move(delta)
 		_update_raycast()
 		
 		if _raycast.is_colliding():
 			velocity = Vector2.ZERO
-			_play_idle_animation() 
-		else:
-			move_and_slide()
+			_play_idle_animation()
 		
 		_check_position_change(delta)
 		_update_animation()
 
 
-func _move() -> void:
-	var direction: Vector2 = Vector2(
-		Input.get_axis("walking_left", "walking_right"),
-		Input.get_axis("walking_up", "walking_down")
-	)
+
+func get_movement_direction() -> Vector2:
+	var direction = Vector2.ZERO
+
+	if Input.is_action_pressed('walking_left'):
+		direction.x -= 1
+	elif Input.is_action_pressed('walking_right'):
+		direction.x += 1
+	elif Input.is_action_pressed('walking_up'):
+		direction.y -= 1
+	elif Input.is_action_pressed('walking_down'):
+		direction.y += 1
+
+	return direction
+
+
+func _move(delta: float) -> void:
+	var direction = get_movement_direction()
 	
 	if direction != Vector2.ZERO:
 		last_direction = direction.normalized()
 		_update_direction_to_server()
-
-	velocity = direction.normalized() * _move_speed
+		velocity = direction * _move_speed
+	else:
+		velocity.x = 0
+		velocity.y = 0
+	
+	move_and_slide()
 
 
 func _update_animation() -> void:
@@ -93,7 +109,7 @@ func _update_direction_to_server() -> void:
 func _check_position_change(delta: float) -> void:
 	if position != previous_position:
 		time_since_last_send += delta
-		
+
 		if time_since_last_send >= send_delay:
 			send_movement()
 			previous_position = position
@@ -135,11 +151,11 @@ func _play_walking_animation() -> void:
 
 
 func send_movement():
-	var move_message = MoveChar.new(round(position.x), round(position.y), direction_to_server)
+	var move_message = MoveChar.new(round(position.x), round(position.y), direction_to_server, '')
 	move_message.send()
 
 
-func update_remote_position(new_position: Vector2, new_direction: int):
+func update_remote_position(new_position: Vector2, new_direction: int, animation: String):
 	if not is_local_player:
 		var tween = create_tween()
 		tween.tween_property(self, "position", new_position, 0.1)
@@ -147,4 +163,21 @@ func update_remote_position(new_position: Vector2, new_direction: int):
 
 func _on_target_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
-		print('emitiu')
+		var char_detail_tree := '/root/Main/InGame/CharDetailsUI'
+		var character_detail := get_tree().root.get_node(char_detail_tree) as CharacterDetail
+		character_detail.title_label.text = player_name
+		character_detail.gender_label.text = 'Gender:' + gender
+		character_detail.show()
+
+
+func _play_animation(animation_name: String) -> void:
+	if animation_name == "walking_left":
+		_animation.play("walking_left")
+	elif animation_name == "walking_right":
+		_animation.play("walking_right")
+	elif animation_name == "walking_up":
+		_animation.play("walking_up")
+	elif animation_name == "walking_down":
+		_animation.play("walking_down")
+	else:
+		_play_idle_animation()

@@ -15,6 +15,7 @@ var char_selected: CharSelected
 var map_chars_to: MapCharsTo
 var new_char_to: NewCharToMap
 var char_moved: CharMoved
+var char_disconnected: CharDisconnected
 
 
 func _init() -> void:
@@ -32,6 +33,7 @@ func _init() -> void:
 	map_chars_to = MapCharsTo.new()
 	new_char_to = NewCharToMap.new()
 	char_moved = CharMoved.new()
+	char_disconnected = CharDisconnected.new()
 
 	register_requests()
 
@@ -51,6 +53,7 @@ func register_requests() -> void:
 	request_handlers[ServerHeaders.list.MapCharsTo] = Callable(map_chars_to, "handle")
 	request_handlers[ServerHeaders.list.NewCharToMap] = Callable(new_char_to, "handle")
 	request_handlers[ServerHeaders.list.CharMoved] = Callable(char_moved, "handle")
+	request_handlers[ServerHeaders.list.CharDisconnected] = Callable(char_disconnected, "handle")
 
 
 func handle_message(message: ServerMessage, scene_tree: SceneTree) -> void:

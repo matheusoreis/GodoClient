@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://37ljdjh8mlav"]
+[gd_scene load_steps=7 format=3 uid="uid://37ljdjh8mlav"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_yb6d6"]
 [ext_resource type="PackedScene" uid="uid://46156qldxcyf" path="res://scenes/ui/menu/access_account/access_account_ui.tscn" id="2_842pl"]
 [ext_resource type="PackedScene" uid="uid://dvkpksmeiyjyi" path="res://scenes/ui/menu/create_account/create_account_ui.tscn" id="3_vg40n"]
 [ext_resource type="PackedScene" uid="uid://cg10364e05v16" path="res://scenes/ui/menu/char_list/char_list_ui.tscn" id="4_qlj5w"]
 [ext_resource type="PackedScene" uid="uid://cb2fjmbvllsok" path="res://scenes/ui/menu/create_char/create_char_ui.tscn" id="5_aeujk"]
+[ext_resource type="PackedScene" uid="uid://ukuau6hyip7h" path="res://scenes/ui/game/char_details/char_details_ui.tscn" id="6_kobmy"]
 
 [node name="Main" type="Control" node_paths=PackedStringArray("_fps_label")]
 layout_mode = 3
@@ -71,3 +72,6 @@ visible = false
 char_list_ui = NodePath("../CharListUI")
 
 [node name="InGame" type="CanvasLayer" parent="."]
+
+[node name="CharDetailsUI" parent="InGame" instance=ExtResource("6_kobmy")]
+visible = false
