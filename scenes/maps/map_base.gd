@@ -9,7 +9,7 @@ func spawn_char(id: int, char_name: String, char_gender: String, pos_x: int, pos
 	char_instantiate.name = str(id)
 	char_instantiate.player_id = id
 	char_instantiate.player_name = char_name
-	char_instantiate.gender = char_gender
+	#char_instantiate.gender = char_gender
 	char_instantiate.position = Vector2(pos_x, pos_y)
 	char_instantiate.is_local_player = local_player
 	
