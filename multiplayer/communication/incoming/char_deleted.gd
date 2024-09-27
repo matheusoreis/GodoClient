@@ -1,4 +1,4 @@
-class_name CharDeleted extends RefCounted
+class_name CharacterDeleted extends RefCounted
 
 
 func handle(_message : ServerMessage, scene_tree: SceneTree) -> void:
@@ -7,5 +7,5 @@ func handle(_message : ServerMessage, scene_tree: SceneTree) -> void:
 
 	char_list_ui.hide()
 
-	var charList := CharList.new()
+	var charList := CharacterList.new()
 	charList.send()

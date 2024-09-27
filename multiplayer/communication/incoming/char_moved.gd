@@ -1,4 +1,4 @@
-class_name CharMoved extends RefCounted
+class_name CharacterMoved extends RefCounted
 
 func handle(message: ServerMessage, scene_tree: SceneTree) -> void:
     var char_id := message.get_int32()

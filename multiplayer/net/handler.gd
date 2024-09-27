@@ -9,13 +9,13 @@ var delete_account: DeleAccountSuccess
 var recover_account: RecoverAccountSuccess
 var change_password: ChangePasswordSuccess
 var char_list: CharListIncoming
-var char_created: CharCreated
-var char_deleted: CharDeleted
-var char_selected: CharSelected
-var map_chars_to: MapCharsTo
-var new_char_to: NewCharToMap
-var char_moved: CharMoved
-var char_disconnected: CharDisconnected
+var char_created: CharacterCreated
+var char_deleted: CharacterDeleted
+var char_selected: CharacterSelected
+var map_chars_to: NotifyExistingCharacters
+var new_char_to: OthersOfNewCharacter
+var char_moved: CharacterMoved
+var char_disconnected: CharacterDisconnected
 
 
 func _init() -> void:
@@ -27,13 +27,13 @@ func _init() -> void:
 	recover_account = RecoverAccountSuccess.new()
 	change_password = ChangePasswordSuccess.new()
 	char_list = CharListIncoming.new()
-	char_created = CharCreated.new()
-	char_deleted = CharDeleted.new()
-	char_selected = CharSelected.new()
-	map_chars_to = MapCharsTo.new()
-	new_char_to = NewCharToMap.new()
-	char_moved = CharMoved.new()
-	char_disconnected = CharDisconnected.new()
+	char_created = CharacterCreated.new()
+	char_deleted = CharacterDeleted.new()
+	char_selected = CharacterSelected.new()
+	map_chars_to = NotifyExistingCharacters.new()
+	new_char_to = OthersOfNewCharacter.new()
+	char_moved = CharacterMoved.new()
+	char_disconnected = CharacterDisconnected.new()
 
 	register_requests()
 
@@ -46,14 +46,14 @@ func register_requests() -> void:
 	request_handlers[ServerHeaders.list.DeleteAccountSuccess] = Callable(delete_account, "handle")
 	request_handlers[ServerHeaders.list.RecoverAccountSuccess] = Callable(recover_account, "handle")
 	request_handlers[ServerHeaders.list.ChangePasswordSuccess] = Callable(change_password, "handle")
-	request_handlers[ServerHeaders.list.CharList] = Callable(char_list, "handle")
-	request_handlers[ServerHeaders.list.CharCreated] = Callable(char_created, "handle")
-	request_handlers[ServerHeaders.list.CharDeleted] = Callable(char_deleted, "handle")
-	request_handlers[ServerHeaders.list.CharSelected] = Callable(char_selected, "handle")
-	request_handlers[ServerHeaders.list.MapCharsTo] = Callable(map_chars_to, "handle")
-	request_handlers[ServerHeaders.list.NewCharToMap] = Callable(new_char_to, "handle")
-	request_handlers[ServerHeaders.list.CharMoved] = Callable(char_moved, "handle")
-	request_handlers[ServerHeaders.list.CharDisconnected] = Callable(char_disconnected, "handle")
+	request_handlers[ServerHeaders.list.CharacterList] = Callable(char_list, "handle")
+	request_handlers[ServerHeaders.list.CharacterCreated] = Callable(char_created, "handle")
+	request_handlers[ServerHeaders.list.CharacterDeleted] = Callable(char_deleted, "handle")
+	request_handlers[ServerHeaders.list.CharacterSelected] = Callable(char_selected, "handle")
+	request_handlers[ServerHeaders.list.NotifyExistingCharacters] = Callable(map_chars_to, "handle")
+	request_handlers[ServerHeaders.list.OthersOfNewCharacter] = Callable(new_char_to, "handle")
+	request_handlers[ServerHeaders.list.CharacterMoved] = Callable(char_moved, "handle")
+	request_handlers[ServerHeaders.list.CharacterDisconnected] = Callable(char_disconnected, "handle")
 
 
 func handle_message(message: ServerMessage, scene_tree: SceneTree) -> void:

@@ -1,4 +1,4 @@
-class_name CharDisconnected extends RefCounted
+class_name CharacterDisconnected extends RefCounted
 
 
 func handle(message : ServerMessage, scene_tree: SceneTree) -> void:

@@ -7,5 +7,5 @@ func handle(_message : ServerMessage, scene_tree: SceneTree) -> void:
 
 	access_account_ui.hide()
 
-	var charList := CharList.new()
+	var charList := CharacterList.new()
 	charList.send()

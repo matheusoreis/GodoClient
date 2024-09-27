@@ -1,4 +1,4 @@
-class_name CharSelected extends RefCounted
+class_name CharacterSelected extends RefCounted
 
 
 func handle(message : ServerMessage, scene_tree: SceneTree) -> void:

@@ -7,7 +7,7 @@ enum list {
 	DeleteAccount,
 	RecoverAccount,
 	ChangePassword,
-	CharList,
+	CharacterList,
 	CreateChar,
 	DeleteChar,
 	SelectChar,

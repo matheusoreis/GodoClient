@@ -1,4 +1,4 @@
-class_name MapCharsTo extends RefCounted
+class_name NotifyExistingCharacters extends RefCounted
 
 func handle(message: ServerMessage, scene_tree: SceneTree) -> void:
 	var map_helper = MapHelper.new()
