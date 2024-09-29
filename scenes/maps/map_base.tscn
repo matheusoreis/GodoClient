@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://comfh2gp4a3ni"]
-
-[ext_resource type="Script" path="res://scenes/maps/map_base.gd" id="1_veqin"]
-
-[node name="MapBase" type="Node2D" node_paths=PackedStringArray("chars_location")]
-script = ExtResource("1_veqin")
-chars_location = NodePath("Chars")
-
-[node name="Chars" type="Node2D" parent="."]
