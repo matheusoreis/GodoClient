@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4hr3ntkxgrtb"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_clcq7"]
+[ext_resource type="PackedScene" uid="uid://46156qldxcyf" path="res://scenes/ui/menu/access_account/access_account_ui.tscn" id="2_26hlc"]
+[ext_resource type="PackedScene" uid="uid://dvkpksmeiyjyi" path="res://scenes/ui/menu/create_account/create_account_ui.tscn" id="3_7os2l"]
+[ext_resource type="PackedScene" uid="uid://cg10364e05v16" path="res://scenes/ui/menu/character_list/character_list_ui.tscn" id="4_jft5f"]
+[ext_resource type="PackedScene" uid="uid://cb2fjmbvllsok" path="res://scenes/ui/menu/create_character/create_character_ui.tscn" id="5_raves"]
+
+[node name="Main" type="Control" node_paths=PackedStringArray("fps_label")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_clcq7")
+fps_label = NodePath("SharedUI/InfoLocation/ContentVBox/FpsLabel")
+
+[node name="Game" type="Node" parent="."]
+
+[node name="SharedUI" type="CanvasLayer" parent="."]
+
+[node name="InfoLocation" type="MarginContainer" parent="SharedUI"]
+offset_right = 346.0
+offset_bottom = 74.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="ContentVBox" type="VBoxContainer" parent="SharedUI/InfoLocation"]
+layout_mode = 2
+
+[node name="PingLabel" type="Label" parent="SharedUI/InfoLocation/ContentVBox"]
+layout_mode = 2
+text = "Ping: Sincronizando..."
+
+[node name="FpsLabel" type="Label" parent="SharedUI/InfoLocation/ContentVBox"]
+layout_mode = 2
+text = "FPS: 64"
+
+[node name="AlertLocation" type="MarginContainer" parent="SharedUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ContentVBox" type="VBoxContainer" parent="SharedUI/AlertLocation"]
+layout_mode = 2
+
+[node name="MenuUI" type="CanvasLayer" parent="."]
+
+[node name="AccessAccountUI" parent="MenuUI" node_paths=PackedStringArray("char_list_ui", "create_account_ui") instance=ExtResource("2_26hlc")]
+char_list_ui = NodePath("../CharacterListUI")
+create_account_ui = NodePath("../CreateAccountUI")
+
+[node name="CreateAccountUI" parent="MenuUI" node_paths=PackedStringArray("access_account_ui") instance=ExtResource("3_7os2l")]
+visible = false
+access_account_ui = NodePath("../AccessAccountUI")
+
+[node name="CharacterListUI" parent="MenuUI" instance=ExtResource("4_jft5f")]
+visible = false
+
+[node name="CreateCharacterUI" parent="MenuUI" node_paths=PackedStringArray("character_list_ui") instance=ExtResource("5_raves")]
+visible = false
+character_list_ui = NodePath("../CharacterListUI")
+
+[node name="GameUI" type="CanvasLayer" parent="."]
