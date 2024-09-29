@@ -52,6 +52,7 @@ func _on_access_button_pressed() -> void:
 	if password_line.text.length() < 3 || re_password_line.text.length() < 3:
 		alert.show_alert(get_tree(), 'A senha informada é muito pequena!')
 
+	CreateAccount.new(email_line.text, password_line.text).send()
 	#var outgoing = CreateAccount.new(email_line.text, password_line.text)
 	#outgoing.send()
 

@@ -13,6 +13,8 @@ func handle(message : ServerMessage, scene_tree: SceneTree) -> void:
 		var character_map_position_x: int = message.get_int32()
 		var character_map_position_y: int = message.get_int32()
 		var character_direction: int = message.get_int8()
+		var character_default_sprite: String = message.get_string()
+		var character_current_sprite: String = message.get_string()
 
 		var current_map: BaseMap = map_helper.ensure_map_is_instantiated(
 			scene_tree, character_current_map
@@ -29,5 +31,7 @@ func handle(message : ServerMessage, scene_tree: SceneTree) -> void:
 			character_gender,
 			character_position,
 			character_direction,
-			false
+			false,
+		character_default_sprite,
+		character_current_sprite
 		)

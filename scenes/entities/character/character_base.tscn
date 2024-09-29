@@ -1,7 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://bbr60oq3xovsq"]
+[gd_scene load_steps=15 format=3 uid="uid://bbr60oq3xovsq"]
 
 [ext_resource type="Script" path="res://scenes/entities/character/character_base.gd" id="1_dy70s"]
-[ext_resource type="Texture2D" uid="uid://h205m17aadm2" path="res://assets/graphics/entities/chars/$Fighter01.png" id="2_eq1pg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ulvd3"]
 font_size = 22
@@ -343,7 +342,6 @@ target_position = Vector2(0, 13)
 
 [node name="Texture" type="Sprite2D" parent="."]
 position = Vector2(-0.5, -18)
-texture = ExtResource("2_eq1pg")
 hframes = 3
 vframes = 4
 frame = 1

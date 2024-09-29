@@ -3,10 +3,11 @@ class_name AlertUI extends PanelContainer
 
 @export var timer: Timer
 @export var label: Label
-@export_range(0, 10) var timeout: int = 1.0
+@export_range(0, 10) var timeout: int = 5
 
 
 func _on_timer_timeout() -> void:
+	timer.wait_time = timeout
 	queue_free()
 
 

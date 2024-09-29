@@ -41,7 +41,6 @@ func update_character_panels(characters: Array, max_characters: int) -> void:
 				play_button.pressed.connect(
 					_on_play_button_pressed.bind(
 						character_data["character_id"],
-						character_data["character_current_map"]
 					)
 				)
 
@@ -74,12 +73,12 @@ func _on_new_button_pressed() -> void:
 	create_char_ui.show()
 
 
-func _on_play_button_pressed(id: int, map: int) -> void:
+func _on_play_button_pressed(id: int) -> void:
 	SelectCharacter.new(id).send()
 
 
-func _on_delete_button_pressed(index: int,) -> void:
-	DeleteCharacter.new(index).send()
+func _on_delete_button_pressed(id: int) -> void:
+	DeleteCharacter.new(id).send()
 
 
 func _on_close_button_pressed() -> void:

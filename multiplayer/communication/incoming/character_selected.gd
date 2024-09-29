@@ -9,6 +9,8 @@ func handle(message : ServerMessage, scene_tree: SceneTree) -> void:
 	var character_map_position_x: int = message.get_int32()
 	var character_map_position_y: int = message.get_int32()
 	var character_direction: int = message.get_int8()
+	var character_default_sprite: String = message.get_string()
+	var character_current_sprite: String = message.get_string()
 
 	var character_position: Vector2 = Vector2(
 		character_map_position_x,
@@ -31,7 +33,9 @@ func handle(message : ServerMessage, scene_tree: SceneTree) -> void:
 		character_gender,
 		character_position,
 		character_direction,
-		true
+		true,
+		character_default_sprite,
+		character_current_sprite
 	)
 
 	var menu_canvas_location: String = '/root/Main/MenuUI'

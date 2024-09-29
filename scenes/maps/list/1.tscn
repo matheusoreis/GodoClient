@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=4 uid="uid://ch8jexrt7xq4y"]
 
 [ext_resource type="Script" path="res://scenes/maps/base_map.gd" id="1_uraxm"]
-[ext_resource type="TileSet" uid="uid://b4gnyqcbx5516" path="res://assets/graphics/entities/tilesets/tileset.tres" id="2_abaej"]
+[ext_resource type="TileSet" uid="uid://b4gnyqcbx5516" path="res://assets/graphics/tilesets/tileset.tres" id="2_abaej"]
 
 [node name="BaseMap" type="Node2D" node_paths=PackedStringArray("character_spawn_location")]
 y_sort_enabled = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7ovy3d4575ck"]
+[gd_scene load_steps=2 format=3 uid="uid://bxgxjwejy2amp"]
 
 [ext_resource type="Script" path="res://scenes/ui/shared/alert/alert_ui.gd" id="1_s40yc"]
 
@@ -9,7 +9,6 @@ size_flags_horizontal = 3
 script = ExtResource("1_s40yc")
 timer = NodePath("Timer")
 label = NodePath("MarginContainer/HBoxContainer/Label")
-timeout = 5
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

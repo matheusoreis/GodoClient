@@ -4,7 +4,7 @@ class_name BaseMap extends Node2D
 @export var character_spawn_location: Node2D
 
 
-func spawn_char(id: int, char_name: String, char_gender: String, character_position: Vector2, direction: int, local_player: bool) -> void:
+func spawn_char(id: int, char_name: String, char_gender: String, character_position: Vector2, direction: int, local_player: bool, default_sprite: String, current_sprite: String) -> void:
 	const character_location: String = 'res://scenes/entities/character/character_base.tscn'
 	var character_preload: PackedScene = preload(
 		character_location
@@ -20,5 +20,6 @@ func spawn_char(id: int, char_name: String, char_gender: String, character_posit
 	character_instantiate.direction = character_instantiate.int_to_direction(
 		direction
 	)
+	character_instantiate.set_texture(default_sprite)
 
 	character_spawn_location.add_child(character_instantiate)

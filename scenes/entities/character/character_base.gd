@@ -99,6 +99,14 @@ func _get_input_direction() -> Vector2:
 	return direction_vector
 
 
+func set_texture(current_sprite: String) -> void:
+	var sprites_location: String = 'res://assets/graphics/entities/characters/'
+	var texture: Texture2D = load(sprites_location + current_sprite + '.png')
+
+	if texture:
+		_texture.texture = texture
+
+
 func send_movement():
 	MoveCharacter.new(
 		action,

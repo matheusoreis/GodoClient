@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 Multiplayer="*res://multiplayer/multiplayer.gd"
 Globals="*res://multiplayer/misc/globals.gd"
 
+[display]
+
+window/vsync/vsync_mode=0
+
 [input]
 
 walking_left={

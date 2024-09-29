@@ -1,25 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://cb2fjmbvllsok"]
+[gd_scene load_steps=11 format=3 uid="uid://cb2fjmbvllsok"]
 
 [ext_resource type="Script" path="res://scenes/ui/menu/create_character/create_character_ui.gd" id="1_p1f47"]
 [ext_resource type="Script" path="res://scenes/ui/top_bar.gd" id="2_x7loo"]
+[ext_resource type="Texture2D" uid="uid://bbw6qs1pda1sd" path="res://assets/graphics/entities/characters/2.png" id="3_g4q6p"]
+[ext_resource type="Texture2D" uid="uid://cnsosgognq3hm" path="res://assets/graphics/entities/characters/1.png" id="3_xwfes"]
+[ext_resource type="Texture2D" uid="uid://cftk22l4gc4bq" path="res://assets/graphics/entities/characters/3.png" id="4_0w4ji"]
+[ext_resource type="Texture2D" uid="uid://bwpo8l0jx1y5e" path="res://assets/graphics/entities/characters/4.png" id="5_pv8f6"]
+[ext_resource type="Texture2D" uid="uid://d3cqnf7v7425b" path="res://assets/graphics/entities/characters/5.png" id="6_ho522"]
+[ext_resource type="Texture2D" uid="uid://c12qf35lac7wf" path="res://assets/graphics/entities/characters/6.png" id="7_vscip"]
+[ext_resource type="Texture2D" uid="uid://br0pqkp5dc3n5" path="res://assets/graphics/entities/characters/7.png" id="8_gvl5g"]
+[ext_resource type="Texture2D" uid="uid://bbo4n074fyb43" path="res://assets/graphics/entities/characters/8.png" id="9_xxix1"]
 
-[node name="CreateCharacterUI" type="PanelContainer" node_paths=PackedStringArray("name_line", "create_button", "genders_button")]
+[node name="CreateCharacterUI" type="PanelContainer" node_paths=PackedStringArray("name_line", "create_button", "genders_button", "sprite_preview")]
 custom_minimum_size = Vector2(250, 200)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -125.0
+offset_top = -164.0
+offset_right = 125.0
+offset_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_p1f47")
 name_line = NodePath("LayoutVBox/ContentMargin/CharacterPanel/ContentMargin/ContentVBox/NameLine")
 create_button = NodePath("LayoutVBox/ContentMargin/CharacterPanel/ContentMargin/ContentVBox/CreateButton")
 genders_button = NodePath("LayoutVBox/ContentMargin/CharacterPanel/ContentMargin/ContentVBox/GendersButton")
+sprite_preview = NodePath("LayoutVBox/ContentMargin/CharacterPanel/ContentMargin/ContentVBox/SpriteVbox/SpritePanel/SpritePreview")
+avaliable_sprites = Array[CompressedTexture2D]([ExtResource("3_xwfes"), ExtResource("3_g4q6p"), ExtResource("4_0w4ji"), ExtResource("5_pv8f6"), ExtResource("6_ho522"), ExtResource("7_vscip"), ExtResource("8_gvl5g"), ExtResource("9_xxix1")])
 
 [node name="LayoutVBox" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -104,9 +114,35 @@ popup/item_2/id = 3
 popup/item_3/text = "Transgender"
 popup/item_3/id = 4
 
+[node name="SpriteVbox" type="HBoxContainer" parent="LayoutVBox/ContentMargin/CharacterPanel/ContentMargin/ContentVBox"]
+layout_mode = 2
+
+[node name="PreviousSprite" type="Button" parent="LayoutVBox/ContentMargin/CharacterPanel/ContentMargin/ContentVBox/SpriteVbox"]
+layout_mode = 2
+text = "<"
+
+[node name="SpritePanel" type="Panel" parent="LayoutVBox/ContentMargin/CharacterPanel/ContentMargin/ContentVBox/SpriteVbox"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpritePreview" type="Sprite2D" parent="LayoutVBox/ContentMargin/CharacterPanel/ContentMargin/ContentVBox/SpriteVbox/SpritePanel"]
+position = Vector2(87, 59.5)
+scale = Vector2(2, 2)
+texture = ExtResource("3_xwfes")
+hframes = 3
+vframes = 4
+frame = 1
+
+[node name="NextSprite" type="Button" parent="LayoutVBox/ContentMargin/CharacterPanel/ContentMargin/ContentVBox/SpriteVbox"]
+layout_mode = 2
+text = ">"
+
 [node name="CreateButton" type="Button" parent="LayoutVBox/ContentMargin/CharacterPanel/ContentMargin/ContentVBox"]
 layout_mode = 2
 text = "Criar"
 
 [connection signal="pressed" from="LayoutVBox/TopBar/TopBarContentMargin/TopBarContentHBox/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="LayoutVBox/ContentMargin/CharacterPanel/ContentMargin/ContentVBox/SpriteVbox/PreviousSprite" to="." method="_on_previous_sprite_pressed"]
+[connection signal="pressed" from="LayoutVBox/ContentMargin/CharacterPanel/ContentMargin/ContentVBox/SpriteVbox/NextSprite" to="." method="_on_next_sprite_pressed"]
 [connection signal="pressed" from="LayoutVBox/ContentMargin/CharacterPanel/ContentMargin/ContentVBox/CreateButton" to="." method="_on_create_button_pressed"]
