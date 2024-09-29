@@ -20,6 +20,13 @@ func spawn_char(id: int, char_name: String, char_gender: String, character_posit
 	character_instantiate.direction = character_instantiate.int_to_direction(
 		direction
 	)
-	character_instantiate.set_texture(default_sprite)
 
+	var character_sprite: String
+
+	if current_sprite != str(0):
+		character_sprite = current_sprite
+	else:
+		character_sprite = default_sprite
+
+	character_instantiate.set_texture(character_sprite)
 	character_spawn_location.add_child(character_instantiate)
