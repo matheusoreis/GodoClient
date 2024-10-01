@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd2jcbu0ccd8s"]
+
+[ext_resource type="Script" path="res://scenes/ui/game/chat_ui.gd" id="1_hqyrk"]
+
+[node name="ChatUI" type="PanelContainer" node_paths=PackedStringArray("chat_history", "chat_options", "chat_message", "send_message")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -201.0
+offset_right = 494.0
+offset_bottom = -5.0
+grow_vertical = 0
+script = ExtResource("1_hqyrk")
+chat_history = NodePath("ContentMargin/ContentVbox/ChatHistory")
+chat_options = NodePath("ContentMargin/ContentVbox/ContentHbox/ChatOptions")
+chat_message = NodePath("ContentMargin/ContentVbox/ContentHbox/ChatMessages")
+send_message = NodePath("ContentMargin/ContentVbox/ContentHbox/SendMessage")
+
+[node name="ContentMargin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ContentVbox" type="VBoxContainer" parent="ContentMargin"]
+layout_mode = 2
+
+[node name="ChatHistory" type="RichTextLabel" parent="ContentMargin/ContentVbox"]
+layout_mode = 2
+size_flags_vertical = 3
+scroll_following = true
+
+[node name="ContentHbox" type="HBoxContainer" parent="ContentMargin/ContentVbox"]
+layout_mode = 2
+
+[node name="ChatOptions" type="OptionButton" parent="ContentMargin/ContentVbox/ContentHbox"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Mapa"
+popup/item_1/text = "Global"
+popup/item_1/id = 1
+
+[node name="ChatMessages" type="LineEdit" parent="ContentMargin/ContentVbox/ContentHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SendMessage" type="Button" parent="ContentMargin/ContentVbox/ContentHbox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Enviar"
+
+[connection signal="pressed" from="ContentMargin/ContentVbox/ContentHbox/SendMessage" to="." method="_on_send_message_pressed"]

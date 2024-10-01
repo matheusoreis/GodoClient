@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4hr3ntkxgrtb"]
+[gd_scene load_steps=7 format=3 uid="uid://d4hr3ntkxgrtb"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_clcq7"]
 [ext_resource type="PackedScene" uid="uid://46156qldxcyf" path="res://scenes/ui/menu/access_account/access_account_ui.tscn" id="2_26hlc"]
 [ext_resource type="PackedScene" uid="uid://dvkpksmeiyjyi" path="res://scenes/ui/menu/create_account/create_account_ui.tscn" id="3_7os2l"]
 [ext_resource type="PackedScene" uid="uid://cg10364e05v16" path="res://scenes/ui/menu/character_list/character_list_ui.tscn" id="4_jft5f"]
 [ext_resource type="PackedScene" uid="uid://cb2fjmbvllsok" path="res://scenes/ui/menu/create_character/create_character_ui.tscn" id="5_raves"]
+[ext_resource type="PackedScene" uid="uid://cd2jcbu0ccd8s" path="res://scenes/ui/game/chat_ui.tscn" id="6_7k3yc"]
 
 [node name="Main" type="Control" node_paths=PackedStringArray("fps_label")]
 layout_mode = 3
@@ -67,3 +68,5 @@ visible = false
 character_list_ui = NodePath("../CharacterListUI")
 
 [node name="GameUI" type="CanvasLayer" parent="."]
+
+[node name="ChatUI" parent="GameUI" instance=ExtResource("6_7k3yc")]
