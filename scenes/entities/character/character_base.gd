@@ -20,15 +20,15 @@ var gender: String
 
 
 enum CHAR_DIRECTION {
-	LEFT,
-	UP,
-	RIGHT,
-	DOWN
+    LEFT,
+    UP,
+    RIGHT,
+    DOWN
 }
 
 enum CHAR_ACTION {
-	IDLE,
-	WALKING,
+    IDLE,
+    WALKING,
 }
 
 var _is_moving: bool = false
@@ -40,173 +40,174 @@ var send_delay: float = 0.05
 
 
 func _ready() -> void:
-	_camera.enabled = is_local_player
-	_name.text = player_name
-	_raycast.target_position = Vector2.DOWN * _raycast_size
-	_name.hide()
+    _camera.enabled = is_local_player
+    _name.text = player_name
+    _raycast.target_position = Vector2.DOWN * _raycast_size
+    _name.hide()
 
 
 func _physics_process(delta: float) -> void:
-	if is_local_player:
-		_move(delta)
-		_update_animation(direction)
+    if is_local_player:
+        _move(delta)
+        _update_animation(direction)
 
 
 func _move(delta: float) -> void:
-	var direction_vector: Vector2 = _get_input_direction()
+    var direction_vector: Vector2 = _get_input_direction()
 
-	if direction_vector.length() > 0:
-		self.velocity = direction_vector.normalized() * _move_speed
-		_is_moving = true
-		action = CHAR_ACTION.WALKING
+    if direction_vector.length() > 0:
+        self.velocity = direction_vector.normalized() * _move_speed
+        _is_moving = true
+        action = CHAR_ACTION.WALKING
 
-		if direction_vector.x < 0:
-			direction = CHAR_DIRECTION.LEFT
-			_raycast.target_position = Vector2.LEFT * _raycast_size
-		elif direction_vector.x > 0:
-			direction = CHAR_DIRECTION.RIGHT
-			_raycast.target_position = Vector2.RIGHT * _raycast_size
-		elif direction_vector.y < 0:
-			direction = CHAR_DIRECTION.UP
-			_raycast.target_position = Vector2.UP * _raycast_size
-		elif direction_vector.y > 0:
-			direction = CHAR_DIRECTION.DOWN
-			_raycast.target_position = Vector2.DOWN * _raycast_size
+        if direction_vector.x < 0:
+            direction = CHAR_DIRECTION.LEFT
+            _raycast.target_position = Vector2.LEFT * _raycast_size
+        elif direction_vector.x > 0:
+            direction = CHAR_DIRECTION.RIGHT
+            _raycast.target_position = Vector2.RIGHT * _raycast_size
+        elif direction_vector.y < 0:
+            direction = CHAR_DIRECTION.UP
+            _raycast.target_position = Vector2.UP * _raycast_size
+        elif direction_vector.y > 0:
+            direction = CHAR_DIRECTION.DOWN
+            _raycast.target_position = Vector2.DOWN * _raycast_size
 
-		_raycast.force_raycast_update()
+        _raycast.force_raycast_update()
 
-		time_since_last_send += delta
-		if time_since_last_send >= send_delay:
-			send_movement()
-			time_since_last_send = 0.0
-	else:
-		if !_is_moving:
-			send_movement()
+        time_since_last_send += delta
+        if time_since_last_send >= send_delay:
+            send_movement()
+            time_since_last_send = 0.0
+    else:
+        if !_is_moving:
+            send_movement()
 
-		self.velocity = Vector2.ZERO
-		_is_moving = false
-		action = CHAR_ACTION.IDLE
+        self.velocity = Vector2.ZERO
+        _is_moving = false
+        action = CHAR_ACTION.IDLE
 
-	self.move_and_slide()
+    self.move_and_slide()
 
 
 func _get_input_direction() -> Vector2:
-	var direction_vector: Vector2 = Vector2(
-			Input.get_axis("walking_left", "walking_right"),
-			Input.get_axis("walking_up", "walking_down")
-	)
+    var direction_vector: Vector2 = Vector2(
+            Input.get_axis("walking_left", "walking_right"),
+            Input.get_axis("walking_up", "walking_down")
+    )
 
-	return direction_vector
+    return direction_vector
 
 
 func set_texture(current_sprite: String) -> void:
-	var sprites_location: String = 'res://assets/graphics/entities/characters/'
-	var texture: Texture2D = load(sprites_location + current_sprite + '.png')
+    var sprites_location: String = 'res://assets/graphics/entities/characters/'
+    var texture: Texture2D = load(sprites_location + current_sprite + '.png')
 
-	if texture:
-		_texture.texture = texture
+    if texture:
+        _texture.texture = texture
 
 
 func send_movement():
-	MoveCharacter.new(
-		action,
-		round(position.x),
-		round(position.y),
-		direction,
-		velocity.x,
-		velocity.y
-	).send()
+    print(global_position)
+    MoveCharacter.new(
+        action,
+        round(global_position.x),
+        round(global_position.y),
+        direction,
+        velocity.x,
+        velocity.y
+    ).send()
 
 
 func update_remote_position(s_action: int, s_position_x: int, s_position_y: int, s_direction: int, _s_velocity_x: int, _s_velocity_y: int):
-	if not is_local_player:
-		var server_action = int_to_action(s_action)
-		var server_direction = int_to_direction(s_direction)
+    if not is_local_player:
+        var server_action = int_to_action(s_action)
+        var server_direction = int_to_direction(s_direction)
 
-		if server_action == CHAR_ACTION.WALKING:
-			_is_moving = true
-		else:
-			_is_moving = false
+        if server_action == CHAR_ACTION.WALKING:
+            _is_moving = true
+        else:
+            _is_moving = false
 
-		var tween = create_tween()
-		var new_position: Vector2 = Vector2(s_position_x, s_position_y)
-		tween.tween_property(self, "position", new_position, 0.1)
-		_update_animation(server_direction)
+        var tween = create_tween()
+        var new_position: Vector2 = Vector2(s_position_x, s_position_y)
+        tween.tween_property(self, "position", new_position, 0.1)
+        _update_animation(server_direction)
 
 
 func _update_animation(character_direction: CHAR_DIRECTION) -> void:
-	if _is_moving:
-		_play_idle_animation(character_direction)
-	else:
-		_play_walking_animation(character_direction)
+    if _is_moving:
+        _play_idle_animation(character_direction)
+    else:
+        _play_walking_animation(character_direction)
 
 
 func _play_idle_animation(character_direction: CHAR_DIRECTION):
-	if character_direction == CHAR_DIRECTION.LEFT:
-		_animation.play("walking_left")
-	elif character_direction == CHAR_DIRECTION.UP:
-		_animation.play("walking_up")
-	elif character_direction == CHAR_DIRECTION.RIGHT:
-		_animation.play("walking_right")
-	elif character_direction == CHAR_DIRECTION.DOWN:
-		_animation.play("walking_down")
+    if character_direction == CHAR_DIRECTION.LEFT:
+        _animation.play("walking_left")
+    elif character_direction == CHAR_DIRECTION.UP:
+        _animation.play("walking_up")
+    elif character_direction == CHAR_DIRECTION.RIGHT:
+        _animation.play("walking_right")
+    elif character_direction == CHAR_DIRECTION.DOWN:
+        _animation.play("walking_down")
 
 
 func _play_walking_animation(character_direction: CHAR_DIRECTION):
-	if character_direction == CHAR_DIRECTION.LEFT:
-		_animation.play("idle_left")
-	elif character_direction == CHAR_DIRECTION.UP:
-		_animation.play("idle_up")
-	elif character_direction == CHAR_DIRECTION.RIGHT:
-		_animation.play("idle_right")
-	elif character_direction == CHAR_DIRECTION.DOWN:
-		_animation.play("idle_down")
+    if character_direction == CHAR_DIRECTION.LEFT:
+        _animation.play("idle_left")
+    elif character_direction == CHAR_DIRECTION.UP:
+        _animation.play("idle_up")
+    elif character_direction == CHAR_DIRECTION.RIGHT:
+        _animation.play("idle_right")
+    elif character_direction == CHAR_DIRECTION.DOWN:
+        _animation.play("idle_down")
 
 
 func int_to_action(action_int: int) -> CHAR_ACTION:
-	var current_action: CHAR_ACTION
+    var current_action: CHAR_ACTION
 
-	match action_int:
-		0:
-			current_action = CHAR_ACTION.IDLE
-		1:
-			current_action = CHAR_ACTION.WALKING
-		_ :
-			current_action = CHAR_ACTION.IDLE
+    match action_int:
+        0:
+            current_action = CHAR_ACTION.IDLE
+        1:
+            current_action = CHAR_ACTION.WALKING
+        _ :
+            current_action = CHAR_ACTION.IDLE
 
-	return current_action
+    return current_action
 
 
 func int_to_direction(direction_int: int) -> CHAR_DIRECTION:
-	var current_direction: CHAR_DIRECTION
+    var current_direction: CHAR_DIRECTION
 
-	match direction_int:
-		0:
-			current_direction = CHAR_DIRECTION.LEFT
-		1:
-			current_direction = CHAR_DIRECTION.UP
-		2:
-			current_direction = CHAR_DIRECTION.RIGHT
-		3:
-			current_direction = CHAR_DIRECTION.DOWN
-		_ :
-			current_direction = CHAR_DIRECTION.DOWN
+    match direction_int:
+        0:
+            current_direction = CHAR_DIRECTION.LEFT
+        1:
+            current_direction = CHAR_DIRECTION.UP
+        2:
+            current_direction = CHAR_DIRECTION.RIGHT
+        3:
+            current_direction = CHAR_DIRECTION.DOWN
+        _ :
+            current_direction = CHAR_DIRECTION.DOWN
 
-	return current_direction
+    return current_direction
 
 
 func direction_to_vector():
-	pass
+    pass
 
 
 func _on_target_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.pressed:
-		print("Clique detectado no BaseCharacter.")
+    if event is InputEventMouseButton and event.pressed:
+        print("Clique detectado no BaseCharacter.")
 
 
 func _on_target_area_mouse_entered() -> void:
-	_name.show()
+    _name.show()
 
 
 func _on_target_area_mouse_exited() -> void:
-	_name.hide()
+    _name.hide()
