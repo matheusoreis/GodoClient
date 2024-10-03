@@ -21,7 +21,7 @@ var character_disconnected: CharacterDisconnected = CharacterDisconnected.new()
 var character_teleported: CharacterTeleported = CharacterTeleported.new()
 var chat_message_map: ChatMessageMap = ChatMessageMap.new()
 var chat_message_global: ChatMessageGlobal = ChatMessageGlobal.new()
-var chat_message_bubble: ChatMessageBubble = ChatMessageBubble.new()
+var emote_message: EmoteSent = EmoteSent.new()
 
 func _init() -> void:
 	request_handlers[ServerHeaders.Headers.PONG] = Callable(
@@ -92,8 +92,8 @@ func _init() -> void:
 		chat_message_global, "handle"
 	)
 
-	request_handlers[ServerHeaders.Headers.CHAT_MESSAGE_BUBBLE] = Callable(
-		chat_message_bubble, "handle"
+	request_handlers[ServerHeaders.Headers.EMOTE_SENT] = Callable(
+		emote_message, "handle"
 	)
 
 
