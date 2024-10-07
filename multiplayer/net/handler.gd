@@ -19,12 +19,10 @@ var new_character_to: NewCharacterTo = NewCharacterTo.new()
 var character_moved: CharacterMoved = CharacterMoved.new()
 var character_disconnected: CharacterDisconnected = CharacterDisconnected.new()
 var character_teleported: CharacterTeleported = CharacterTeleported.new()
-var chat_message_map: ChatMessageMap = ChatMessageMap.new()
-var chat_message_global: ChatMessageGlobal = ChatMessageGlobal.new()
-var emote_message: EmoteSent = EmoteSent.new()
+
 
 func _init() -> void:
-	request_handlers[ServerHeaders.Headers.PONG] = Callable(
+	request_handlers[ServerHeaders.Headers.PING] = Callable(
 		pong, "handle"
 	)
 
@@ -32,23 +30,23 @@ func _init() -> void:
 		alert, "handle"
 	)
 
-	request_handlers[ServerHeaders.Headers.ACCESS_SUCCESSFUL] = Callable(
+	request_handlers[ServerHeaders.Headers.ACCESS_ACCOUNT] = Callable(
 		access_successful, "handle"
 	)
 
-	request_handlers[ServerHeaders.Headers.ACCOUNT_CREATED] = Callable(
+	request_handlers[ServerHeaders.Headers.CREATE_ACCOUNT] = Callable(
 		account_created, "handle"
 	)
 
-	request_handlers[ServerHeaders.Headers.ACCOUNT_DELETED] = Callable(
+	request_handlers[ServerHeaders.Headers.DELETE_ACCOUNT] = Callable(
 		account_deleted, "handle"
 	)
 
-	request_handlers[ServerHeaders.Headers.ACCOUNT_RECOVERED] = Callable(
+	request_handlers[ServerHeaders.Headers.RECOVER_ACCOUNT] = Callable(
 		account_recovered, "handle"
 	)
 
-	request_handlers[ServerHeaders.Headers.PASSWORD_CHANGED] = Callable(
+	request_handlers[ServerHeaders.Headers.CHANGE_PASSWORD] = Callable(
 		password_changed, "handle"
 	)
 
@@ -56,15 +54,15 @@ func _init() -> void:
 		character_list, "handle"
 	)
 
-	request_handlers[ServerHeaders.Headers.CHARACTER_CREATED] = Callable(
+	request_handlers[ServerHeaders.Headers.CREATE_CHARACTER] = Callable(
 		character_created, "handle"
 	)
 
-	request_handlers[ServerHeaders.Headers.CHARACTER_DELETED] = Callable(
+	request_handlers[ServerHeaders.Headers.DELETE_CHARACTER] = Callable(
 		character_deleted, "handle"
 	)
 
-	request_handlers[ServerHeaders.Headers.CHARACTER_SELECTED] = Callable(
+	request_handlers[ServerHeaders.Headers.SELECT_CHARACTER] = Callable(
 		character_selected, "handle"
 	)
 
@@ -76,33 +74,26 @@ func _init() -> void:
 		new_character_to, "handle"
 	)
 
-	request_handlers[ServerHeaders.Headers.CHARACTER_MOVED] = Callable(
+	request_handlers[ServerHeaders.Headers.MOVE_CHARACTER] = Callable(
 		character_moved, "handle"
 	)
 
-	request_handlers[ServerHeaders.Headers.CHARACTER_DISCONNECTED] = Callable(
+	request_handlers[ServerHeaders.Headers.DISCONNECT_CHARACTER] = Callable(
 		character_disconnected, "handle"
 	)
-
-	request_handlers[ServerHeaders.Headers.CHAT_MESSAGE_MAP] = Callable(
-		chat_message_map, "handle"
-	)
-
-	request_handlers[ServerHeaders.Headers.CHAT_MESSAGE_GLOBAL] = Callable(
-		chat_message_global, "handle"
-	)
-
-	request_handlers[ServerHeaders.Headers.EMOTE_SENT] = Callable(
-		emote_message, "handle"
+	
+	request_handlers[ServerHeaders.Headers.TELEPORT_CHARACTER] = Callable(
+		character_teleported, "handle"
 	)
 
 
 func handle_message(message: ServerMessage, scene_tree: SceneTree) -> void:
 	var message_id: int = message.get_id()
 	var alert_ui: AlertUI = AlertUI.new()
-
+	
 	if request_handlers.has(message_id):
 		var handler: Callable = request_handlers[message_id]
+		
 		if handler.is_valid():
 			handler.call(message, scene_tree)
 		else:

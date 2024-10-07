@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/ui/top_bar.gd" id="2_7hg5i"]
 
 [node name="CharacterListUI" type="PanelContainer" node_paths=PackedStringArray("slots_hbox")]
-custom_minimum_size = Vector2(400, 170)
+custom_minimum_size = Vector2(200, 170)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

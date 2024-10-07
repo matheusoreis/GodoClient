@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cnsosgognq3hm" path="res://assets/graphics/entities/characters/1.png" id="2_21w0g"]
 [ext_resource type="Texture2D" uid="uid://ba0ts4e7mqcp4" path="res://assets/graphics/system/emotes.png" id="3_ntxu5"]
 
-[sub_resource type="Animation" id="Animation_16ube"]
-resource_name = "talking"
+[sub_resource type="Animation" id="Animation_iexlm"]
+resource_name = "angry"
 length = 0.8
 step = 0.1
 tracks/0/type = "value"
@@ -18,7 +18,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [56, 57, 58, 59, 60, 61, 62, 63]
+"values": [32, 33, 34, 35, 36, 37, 38, 39]
 }
 
 [sub_resource type="Animation" id="Animation_x1tnm"]
@@ -38,8 +38,8 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
-[sub_resource type="Animation" id="Animation_d3qq2"]
-resource_name = "question"
+[sub_resource type="Animation" id="Animation_ruuad"]
+resource_name = "confused"
 length = 0.8
 step = 0.1
 tracks/0/type = "value"
@@ -52,11 +52,11 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [8, 9, 10, 11, 12, 13, 14, 15]
+"values": [48, 49, 50, 51, 52, 53, 54, 55]
 }
 
-[sub_resource type="Animation" id="Animation_1n3sc"]
-resource_name = "music"
+[sub_resource type="Animation" id="Animation_3ypt5"]
+resource_name = "idea"
 length = 0.8
 step = 0.1
 tracks/0/type = "value"
@@ -69,7 +69,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [16, 17, 18, 19, 20, 21, 22, 23]
+"values": [64, 65, 66, 67, 68, 69, 70, 71]
 }
 
 [sub_resource type="Animation" id="Animation_mpkpr"]
@@ -89,8 +89,8 @@ tracks/0/keys = {
 "values": [24, 25, 26, 27, 28, 29, 30, 31]
 }
 
-[sub_resource type="Animation" id="Animation_iexlm"]
-resource_name = "angry"
+[sub_resource type="Animation" id="Animation_1n3sc"]
+resource_name = "music"
 length = 0.8
 step = 0.1
 tracks/0/type = "value"
@@ -103,7 +103,24 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [32, 33, 34, 35, 36, 37, 38, 39]
+"values": [16, 17, 18, 19, 20, 21, 22, 23]
+}
+
+[sub_resource type="Animation" id="Animation_d3qq2"]
+resource_name = "question"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EmoteSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12, 13, 14, 15]
 }
 
 [sub_resource type="Animation" id="Animation_knmw1"]
@@ -121,40 +138,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [48, 49, 50, 51, 52, 53, 54, 55]
-}
-
-[sub_resource type="Animation" id="Animation_ruuad"]
-resource_name = "confused"
-length = 0.8
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EmoteSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [32, 33, 34, 35, 36, 37, 38, 39]
-}
-
-[sub_resource type="Animation" id="Animation_3ypt5"]
-resource_name = "idea"
-length = 0.8
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EmoteSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [64, 65, 66, 67, 68, 69, 70, 71]
 }
 
 [sub_resource type="Animation" id="Animation_0uuk8"]
@@ -177,6 +160,23 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_7u4l1"]
 resource_name = "stop"
 step = 0.1
+
+[sub_resource type="Animation" id="Animation_16ube"]
+resource_name = "talking"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EmoteSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [56, 57, 58, 59, 60, 61, 62, 63]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qw0yi"]
 _data = {
@@ -481,6 +481,7 @@ position = Vector2(16, -52)
 texture = ExtResource("3_ntxu5")
 hframes = 8
 vframes = 10
+frame = 32
 
 [node name="EmoteAnimation" type="AnimationPlayer" parent="."]
 libraries = {

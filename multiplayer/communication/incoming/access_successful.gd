@@ -1,17 +1,11 @@
-class_name AccountCreated extends RefCounted
+class_name AccessSuccessful extends RefCounted
 
 
 func handle(message : ServerMessage, scene_tree: SceneTree) -> void:
-	var access_account_location: String = '/root/Main/MenuUI/AccessAccountUI'
+	const access_account_location: String = '/root/Main/MenuUI/AccessAccountUI'
 	var access_account_node: PanelContainer = scene_tree.root.get_node(
 		access_account_location
 	)
-	access_account_node.show()
+	access_account_node.hide()
 
-	var create_account_location: String = '/root/Main/MenuUI/CreateAccountUI'
-	var create_account_node: PanelContainer = scene_tree.root.get_node(
-		create_account_location
-	)
-	create_account_node.hide()
-
-	RequestCharacters.new().send()
+	RequestCharacters.new().send();

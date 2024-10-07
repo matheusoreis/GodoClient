@@ -25,7 +25,7 @@ func connect_to_host(host: String, port: int, use_ssl := false) -> void:
 		url = "wss://" + host + ":" + str(port) + "/ws"
 
 	var error = _socket.connect_to_url(url)
-
+	
 	if error != OK:
 		closed.emit()
 		_reset_state()

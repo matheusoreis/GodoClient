@@ -22,7 +22,7 @@ func spawn_char(id: int, char_name: String, char_gender: String, character_posit
 	character_instantiate.player_id = id
 	character_instantiate.player_name = char_name
 	character_instantiate.gender = char_gender
-	character_instantiate.global_position = character_position
+	character_instantiate.position = character_position
 	
 	character_instantiate.is_local_player = local_player
 	character_instantiate.direction = character_instantiate.int_to_direction(

@@ -7,3 +7,16 @@ enum AlertType {
 	WARN,
 	ERROR
 }
+
+enum Emotes {
+	ANGRY,
+	ATTENTION,
+	CONFUSED,
+	IDEA,
+	LOVE,
+	MUSIC,
+	QUESTION,
+	SHAME,
+	SLEEPING,
+	TALKING
+}

@@ -1,4 +1,4 @@
-extends PanelContainer
+class_name CreateAccountUI extends PanelContainer
 
 @export_category('Componentes')
 @export var email_line: LineEdit

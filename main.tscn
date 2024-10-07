@@ -68,5 +68,6 @@ visible = false
 character_list_ui = NodePath("../CharacterListUI")
 
 [node name="GameUI" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ChatUI" parent="GameUI" instance=ExtResource("6_7k3yc")]

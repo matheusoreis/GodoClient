@@ -123,11 +123,10 @@ func set_texture(current_sprite: String) -> void:
 
 
 func send_movement():
-	print(round(global_position))
 	MoveCharacter.new(
 		action,
-		round(global_position.x),
-		round(global_position.y),
+		round(position.x),
+		round(position.y),
 		direction,
 		velocity.x,
 		velocity.y
@@ -146,7 +145,7 @@ func update_remote_position(s_action: int, s_position_x: int, s_position_y: int,
 
 		var tween = create_tween()
 		var new_position: Vector2 = Vector2(s_position_x, s_position_y)
-		tween.tween_property(self, "global_position", new_position, 0.1)
+		tween.tween_property(self, "position", new_position, 0.1)
 		_update_animation(server_direction)
 
 

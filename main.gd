@@ -66,10 +66,10 @@ func _process(delta) -> void:
 	if _websocket != null:
 		_websocket.poll()
 
-		_time_elapsed += delta
-		if _time_elapsed >= _ping_interval:
-			_send_ping()
-			_time_elapsed = 0.0
+		#_time_elapsed += delta
+		#if _time_elapsed >= _ping_interval:
+			#_send_ping()
+			#_time_elapsed = 0.0
 
 
 func _on_connecting() -> void:
