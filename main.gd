@@ -66,10 +66,10 @@ func _process(delta) -> void:
 	if _websocket != null:
 		_websocket.poll()
 
-		#_time_elapsed += delta
-		#if _time_elapsed >= _ping_interval:
-			#_send_ping()
-			#_time_elapsed = 0.0
+		_time_elapsed += delta
+		if _time_elapsed >= _ping_interval:
+			PingOutgoing.new().send()
+			_time_elapsed = 0.0
 
 
 func _on_connecting() -> void:
@@ -109,8 +109,3 @@ func _on_received(buffer: PackedByteArray) -> void:
 
 	var client_message: ServerMessage = ServerMessage.new(buffer)
 	_handler.handle_message(client_message, get_tree())
-
-
-func _send_ping() -> void:
-	Globals.sender_ping_time = Time.get_ticks_msec()
-	Ping.new().send()
